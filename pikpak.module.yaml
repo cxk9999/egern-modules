@@ -2,7 +2,7 @@ name: "PikPak"
 description: "解决 PikPak 中国大陆无法使用问题：屏蔽地区检测接口、下载域名国内直连。源自墨鱼 QX 脚本（ddgksf2013 pikpak.fnc.js）+ OneSmartProMCX 分流规则。"
 author: "cxk9999"
 homepage: "https://github.com/cxk9999/egern-modules"
-icon: "arrow.down.circle.fill"
+icon: "https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/PikPak.png"
 
 # ===== 转换自 QX [rewrite_local] =====
 # ^https?:\/\/access\.mypikpak\.com\/access_controller url reject-200

@@ -1,0 +1,43 @@
+name: "PikPak"
+description: "解决 PikPak 中国大陆无法使用问题：屏蔽地区检测接口、下载域名国内直连。源自墨鱼 QX 脚本（ddgksf2013 pikpak.fnc.js）+ OneSmartProMCX 分流规则。"
+author: "cxk9999"
+homepage: "https://github.com/cxk9999/egern-modules"
+icon: "arrow.down.circle.fill"
+
+# ===== 转换自 QX [rewrite_local] =====
+# ^https?:\/\/access\.mypikpak\.com\/access_controller url reject-200
+url_rewrites:
+  - match: "^https?://access\\.mypikpak\\.com/access_controller"
+    location: "http://reject-200/"
+
+# ===== 转换自 QX [mitm] =====
+# hostname = access.mypikpak.com
+mitm:
+  hostnames:
+    - "access.mypikpak.com"
+
+# ===== 参考 OneSmartProMCX.yaml 分流规则（截图） =====
+# 屏蔽 PikPak 地区检测域名
+rules:
+  - domain:
+      match: "access.pikpakdrive.com"
+      policy: REJECT
+  - domain:
+      match: "access.mypikpak.com"
+      policy: REJECT
+  - domain:
+      match: "access.mypikpak.net"
+      policy: REJECT
+  - domain:
+      match: "access.pikpak.me"
+      policy: REJECT
+  # 下载域名走国内直连
+  - domain_keyword:
+      match: "dl-a10b-"
+      policy: DIRECT
+  - domain_keyword:
+      match: "dl-z01a-"
+      policy: DIRECT
+  - domain_regex:
+      match: "^dl-[A-Za-z0-9-]+\\.mypikpak\\.com$"
+      policy: DIRECT
